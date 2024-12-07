@@ -1,0 +1,90 @@
+@use "@/styles/variables" as vars;
+@use "sass:color";
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin button($bg-color, $text-color:black, $border-color:black, $boreder-radius:5px) {
+  background-color: $bg-color;
+  color: $text-color; // Color azul similar al texto de la imagen
+  font-weight: bold;
+  padding: 0px 10px;
+  border: 2px solid $border-color; // Borde sólido del mismo color que el texto
+  border-radius: $boreder-radius;
+  
+  text-align: center;
+  height: 3.375rem;
+  width: 11.2581rem;
+  max-height: 3.375rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+
+  &:hover,
+  &:active{
+    background: black; // Mantiene el fondo negro
+    color: $text-color; // Asegura que el texto no cambie
+    border-color: #007bff; // Borde azul inalterado
+    box-shadow: inset 0 0 5px $border-color, inset 0 0 10px $border-color; // Efecto interno
+    transform: scale(1.05); // Leve zoom al botón
+  }
+  &:focus {
+    outline: none;
+  }
+  &:active {
+    transform: scale(0.95); // Pequeño "clic" al presionar
+  }
+
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+@mixin button-icon-large {
+  border: 2px solid vars.$blue-aluraflix;
+  border-radius: 3.125rem;
+  background-color: vars.$blue-aluraflix--opacity;
+  width: 154.83px;
+  
+    svg {
+      width: 25px;
+      height: 25px;
+      color: vars.$blue-aluraflix
+    }
+  
+    span {
+      display: inline;
+      color: vars.$blue-aluraflix;
+    
+  }
+}
+
+@mixin buton-icon {
+  @include flex-center;
+  @include button(none, none, none, 0px);
+  gap: 1rem;
+  height: 45px;
+  width: 45px;
+
+  svg {
+    font-size: 45px;
+    color: vars.$white;
+  }
+
+  span {
+    display: none; // Texto oculto por defecto
+    margin-left: 8px; // Espaciado entre icono y texto
+  }
+  &:hover {
+    @include button-icon-large;
+  }
+  &.active {
+    @include button-icon-large;
+
+  }
+}
+
+

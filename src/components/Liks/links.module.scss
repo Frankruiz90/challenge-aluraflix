@@ -1,0 +1,14 @@
+@use "@/styles/variables" as vars;
+@use "@/styles/mixins" as mixins;
+
+.linkButton {
+  @include buton-icon;
+}
+.normal {
+  @include button(vars.$black-aluraflix, vars.$blue-aluraflix, vars.$blue-aluraflix, 10px);
+  justify-content: center;
+  align-items: center;
+  &.selected {
+    background-color: vars.$blue-aluraflix;
+  }
+}

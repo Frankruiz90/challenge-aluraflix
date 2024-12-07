@@ -1,0 +1,11 @@
+@use "@/styles/variables" as vars;
+@use "@/styles/mixins";
+
+/* Estilos globales */
+body {
+  font-family: vars.$font-family;
+  font-size: vars.$font-size-base;
+  background-color: vars.$black-aluraflix;
+  margin: 0;
+  padding: 0;
+}

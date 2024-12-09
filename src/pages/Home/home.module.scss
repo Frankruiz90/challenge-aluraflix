@@ -1,0 +1,9 @@
+@use "@/styles/variables" as vars;
+@use "@/styles/mixins" as mixins;
+
+.home {
+  padding: 1rem;
+  @include mixins.flex-center;
+  gap: 1.875rem;
+  flex-wrap: wrap;
+}

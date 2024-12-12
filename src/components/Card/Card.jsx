@@ -4,10 +4,13 @@ import { Link } from "react-router-dom";
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { BiEditAlt } from "react-icons/bi";
 
-export default function Card({ title, id, img }) {
+export default function Card({ title, id, img, category }) {
+  const dynamicClassName = category 
+    ? styles[category.toLowerCase().replace(/\s+/g, '-')] 
+    : '';
   return (
-    <div className={styles.card}>
-      <div className={styles.cardImage}>
+    <div className={`${styles.card} ${dynamicClassName}`}>
+      <div className={`${styles.cardImage} ${dynamicClassName}`}>
         <Link className={styles.link} to={`/${id}`}>
           <img src={img} alt={title} />
         </Link>

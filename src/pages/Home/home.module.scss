@@ -6,4 +6,16 @@
   @include mixins.flex-center;
   gap: 1.875rem;
   flex-wrap: wrap;
+  .categoryGroup {
+    width: 100%;
+    justify-items: left;
+  }
+  .cards {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  // .frontend{
+  //   color: blue;
+  // }
 }

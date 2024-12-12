@@ -13,9 +13,26 @@
     transition: all 0.5s;
     transform: scale(1.03);
   }
+  &.frontend {
+    border: 0.25rem solid vars.$blue-aluraflix-card;
+  }
+  &.backend {
+    border: 0.25rem solid vars.$green-alura-backend;
+  }
+  &.innovacionygestion {
+    border: 0.25rem solid vars.$yellow-alura-gestion;
+  }
   &Image {
     height: 16.625rem;
-    border-bottom: 0.25rem solid vars.$blue-aluraflix-card;
+    &.frontend {
+      border-bottom: 0.25rem solid vars.$blue-aluraflix-card;
+    }
+    &.backend {
+      border-bottom: 0.25rem solid vars.$green-alura-backend;
+    }
+    &.innovacionygestion {
+      border-bottom: 0.25rem solid vars.$yellow-alura-gestion;
+    }
     & a {
       padding: 0.1875rem 0px;
     }

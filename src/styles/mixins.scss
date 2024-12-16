@@ -87,4 +87,30 @@
   }
 }
 
+@mixin scroll {
+  scroll-behavior: smooth;
+  overflow: auto;
+
+
+
+&::-webkit-scrollbar {
+  width: 15px;
+  height: 15px;
+}
+&::-webkit-scrollbar-track {
+  background: vars.$dark-gray-alura;
+  border-radius: 20px;
+  opacity: 0.9;
+
+
+  // border-radius: 10px;
+}
+&::-webkit-scrollbar-thumb {
+  background: vars.$blue-aluraflix--light;
+  border-radius: 10px;
+  opacity: 0.9;
+  border: 5px solid vars.$dark-gray-alura;
+}
+}
+
 

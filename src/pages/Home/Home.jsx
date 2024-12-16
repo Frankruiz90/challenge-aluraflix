@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Card from "../../components/Card/Card";
 import styles from "./home.module.scss";
 import Title from "../../components/Title/Title";
+import Banner from "../../components/Banner/Banner";
 
 export default function Home() {
   const [videos, setVideos] = useState([]);
@@ -22,6 +23,7 @@ export default function Home() {
 
   return (
     <div className={styles.home}>
+      <Banner />
       {Object.keys(groupedVideos).map((category) => (
         <div
           key={category}

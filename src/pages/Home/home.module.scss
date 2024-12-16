@@ -3,19 +3,33 @@
 
 .home {
   padding: 1rem;
+  padding-top: 2rem;
   @include mixins.flex-center;
-  gap: 1.875rem;
   flex-wrap: wrap;
   .categoryGroup {
     width: 100%;
     justify-items: left;
+    
   }
   .cards {
     display: flex;
     gap: 32px;
-    flex-wrap: wrap;
+    width: 100%;
+    padding: 10px;
+    padding-bottom: 30px;
+    margin-bottom: 40px;
+    @include mixins.scroll;
   }
-  // .frontend{
-  //   color: blue;
-  // }
+  @media (min-width: 768px) {
+    padding-top: 0;
+    .categoryGroup {
+      justify-items: center;
+    }
+  }
+  @media (min-width: 1200px) {
+    .categoryGroup {
+      justify-items: left;
+    }
+  }
+
 }

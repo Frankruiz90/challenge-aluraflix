@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
+import { VideoContext } from "../../context/VideoContext";
 import Card from "../../components/Card/Card";
 import styles from "./home.module.scss";
 import Title from "../../components/Title/Title";
 import Banner from "../../components/Banner/Banner";
 
 export default function Home() {
-  const [videos, setVideos] = useState([]);
-  useEffect(() => {
-    fetch("http://localhost:3000/videos")
-      .then((response) => response.json())
-      .then((data) => {
-        setVideos(data);
-      });
-  }, []);
+  const { videos } = useContext(VideoContext);
+
+  // Agrupar videos por categoría
   const groupedVideos = videos.reduce((acc, video) => {
     if (!acc[video.category]) {
       acc[video.category] = [];

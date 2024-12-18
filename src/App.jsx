@@ -11,10 +11,12 @@ import Nav from "./components/NavBar/Nav";
 import Footer from "./components/Footer/Footer";
 import NewVideo from "./pages/NewVideo/NewVideo";
 import Page404 from "./pages/404/Page404";
+import { VideoProvider } from "./context/VideoContext";
 
 function App() {
   return (
     <>
+    <VideoProvider>
       <Router>
         <Nav />
         <div className="container">
@@ -27,6 +29,7 @@ function App() {
         </div>
         <Footer></Footer>
       </Router>
+    </VideoProvider>
     </>
   );
 }

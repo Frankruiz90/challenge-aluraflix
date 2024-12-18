@@ -1,0 +1,40 @@
+@use "@/styles/variables" as vars;
+@use "@/styles/mixins" as mixins;
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1172px;
+
+  .error {
+    color: vars.$error-aluraflix;
+    font-size: 14px;
+    margin-top: 8px;
+  }
+
+  .containerButtons {
+    width: 100%;
+    display: flex;
+    gap: 30px;
+    & button {
+      @include mixins.button(
+        vars.$dark-gray-alura,
+        vars.$white,
+        vars.$blue-aluraflix--light,
+        5px
+      );
+      &:disabled {
+        // background-color: #ccc;
+        background: black;
+        cursor: not-allowed;
+        color: vars.$dark-gray-alura;
+        border-color: vars.$dark-gray-alura;
+        box-shadow: none; // Efecto interno
+        transform: none; // Leve zoom al botón
+      }
+    }
+  }
+}

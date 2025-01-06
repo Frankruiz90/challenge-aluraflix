@@ -1,16 +1,26 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Input from "../Input/Input";
 import styles from "./form.module.scss";
 import { VideoContext } from "../../context/VideoContext"; // Importamos el contexto
 
-export default function Form({ title, subTitle, create }) {
-  const { addVideo } = useContext(VideoContext); // Usamos el contexto
+export default function Form({
+  titleForm,
+  subTitle,
+  create,
+  title,
+  link,
+  description,
+  category,
+  id,
+  img,onCloseModal
+}) {
+  const { addVideo,editVideo } = useContext(VideoContext); // Usamos el contexto
   const [formData, setFormData] = useState({
-    name: "",
-    imageUrl: "",
-    videoUrl: "",
-    description: "",
-    category: "",
+    name: title || "",
+    imageUrl: img || "",
+    videoUrl: link || "",
+    description: description || "",
+    category: category || "",
   });
 
   const [errors, setErrors] = useState({
@@ -92,23 +102,29 @@ export default function Form({ title, subTitle, create }) {
   // Función para manejar el envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("sss", formData);
-
-    // Crear un objeto con los datos del video
-    const newVideo = {
-      title: formData.name,
-      img: formData.imageUrl,
-      link: formData.videoUrl,
-      description: formData.description,
-      category: formData.category,
-    };
-
-    // Agregar el nuevo video al contexto
-    await addVideo(newVideo);
-
-    // Limpiar el formulario
-    handleCleanForm();
-    alert("addvideo");
+    // setLoading(true);
+  
+    try {
+      const newVideo = {
+        id: id || Date.now(),
+        title: formData.name,
+        img: formData.imageUrl,
+        link: formData.videoUrl,
+        description: formData.description,
+        category: formData.category,
+      };
+  
+      if (create) await addVideo(newVideo);
+      if (create) handleCleanForm();
+      if (!create) await editVideo(id,newVideo)
+      if (!create) onCloseModal();
+  
+      alert(create ? "Video creado" : "Video actualizado");
+    } catch (error) {
+      console.error("Error al guardar el video:", error);
+    } finally {
+      // setLoading(false);
+    }
   };
 
   const handleCleanForm = () => {
@@ -124,15 +140,18 @@ export default function Form({ title, subTitle, create }) {
 
   return (
     <div>
-      <h1>{title}</h1>
-        <h4>{subTitle}</h4>
-      {create &&
-      <div>
-      <h6>{create}</h6>
-      </div>
-      }
-      <form className={styles.form} onSubmit={handleSubmit}>
+      <h1>{titleForm||formData.name}</h1>
+      {subTitle && (
 
+        <h4>{subTitle}</h4> 
+      )
+      }
+      {create && (
+        <div>
+          <h6>{create}</h6>
+        </div>
+      )}
+      <form className={styles.form} onSubmit={handleSubmit}>
         <Input
           type="text"
           title="Nombre"

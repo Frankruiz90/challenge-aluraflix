@@ -1,0 +1,68 @@
+@use "@/styles/variables" as vars;
+@use "@/styles/mixins" as mixins;
+
+// .button {
+//   // background-color: vars.$primary-color;
+//   @include mixins.flex-center;
+//   @include mixins.button(vars.$blue-aluraflix)
+
+// }
+
+.button {
+  @include button(vars.$black-aluraflix, vars.$blue-aluraflix, vars.$blue-aluraflix, 10px);
+  
+  &.selected {
+    background-color: vars.$blue-aluraflix;
+  }
+}
+
+// Estilo base para los enlaces
+.linkButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: red;
+  text-decoration: none;
+  border: 2px solid vars.$blue-aluraflix;
+  border-radius: 5px;
+  background-color: transparent;
+  transition: all 0.3s;
+
+  svg {
+    font-size: 20px;
+  }
+
+  span {
+    display: none; // Texto oculto por defecto
+    margin-left: 8px; // Espaciado entre icono y texto
+  }
+
+  &:hover {
+    // background-color: lighten(vars.$blue-aluraflix,40%);
+    background-color: aliceblue;
+  }
+
+  &.active {
+    background-color: vars.$blue-aluraflix;
+    color: vars.$white;
+
+    span {
+      display: inline; // Muestra el texto cuando está activo
+    }
+  }
+}
+
+// Ajustes para dispositivos móviles
+@media (max-width: 768px) {
+  .link-button {
+    padding: 8px;
+    font-size: 14px;
+
+    svg {
+      font-size: 16px;
+    }
+  }
+}

@@ -1,0 +1,36 @@
+@use "@/styles/variables" as vars;
+@use "@/styles/mixins" as mixins;
+
+.home {
+  padding: 1rem;
+  padding-top: 2rem;
+  @include mixins.flex-center;
+  flex-wrap: wrap;
+  .categoryGroup {
+    width: 100%;
+    justify-items: left;
+    
+  }
+  .cards {
+    display: flex;
+    gap: 32px;
+    width: 100%;
+    padding: 10px;
+    padding-bottom: 30px;
+    margin-bottom: 40px;
+    min-height: 400px;
+    @include mixins.scroll;
+  }
+  @media (min-width: 768px) {
+    padding-top: 0;
+    .categoryGroup {
+      justify-items: center;
+    }
+  }
+  @media (min-width: 1200px) {
+    .categoryGroup {
+      justify-items: left;
+    }
+  }
+
+}

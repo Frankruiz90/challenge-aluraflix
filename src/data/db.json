@@ -2,19 +2,27 @@
   "videos": [
     {
       "id": "5d1c",
-      "title": "Frank Yulian Ríos Ruizdddddddddd dddd",
+      "title": "Frank Yulian Ríos Ruizdddddddddd ddddssss",
       "img": "https://static.vecteezy.com/system/resources/thumbnails/033/662/051/small_2x/cartoon-lofi-young-manga-style-girl-while-listening-to-music-in-the-rain-ai-generative-photo.jpg",
-      "link": "https://youtu.be/xJJsoquu70o?si=1rdk26BG5gT1RwSd",
+      "link": "https://www.youtube.com/watch?v=yB4n_K7dZV8&list=PLUofhDIg_38qm2oPOV-IRTTEKyrVBBaU7&index=1",
       "description": "sssssssssssssss bbbbbb",
       "category": "frontend"
     },
     {
-      "id": "2ab3",
-      "title": "NUEVO VIEDEO",
+      "id": "1736184995960",
+      "title": "NUEVO VIEDEO ggg",
       "img": "https://static.vecteezy.com/system/resources/thumbnails/033/662/051/small_2x/cartoon-lofi-young-manga-style-girl-while-listening-to-music-in-the-rain-ai-generative-photo.jpg",
-      "link": "https://static.vecteezy.com/system/resources/thumbnails/033/662/051/small_2x/cartoon-lofi-young-manga-style-girl-while-listening-to-music-in-the-rain-ai-generative-photo.jpg",
-      "description": "dddddddddddd",
-      "category": "backend"
+      "link": "https://www.youtube.com/watch?v=s1tAYmMjLdY",
+      "description": "sssssssssss",
+      "category": "frontend"
+    },
+    {
+      "id": "1736192220888",
+      "title": "NUEVO VIEDEO",
+      "img": "https://www.youtube.com/@AluraLatam",
+      "link": "https://www.youtube.com/@AluraLatam",
+      "description": "dddddddddd",
+      "category": "frontend"
     }
   ]
 }

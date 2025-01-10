@@ -6,17 +6,18 @@ import Title from "../../components/Title/Title";
 import Banner from "../../components/Banner/Banner";
 import Form from "../../components/Form/Form";
 import Modal from "../../components/Modal/Modal";
+import YouTubePlayer from "react-player/youtube";
+import Loading from "../../components/Loading/Loading";
 
 export default function Home() {
-  const { videos } = useContext(VideoContext);
+  const { videos,changeLoading } = useContext(VideoContext);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState(null);
-  const handleCloseModal =()=> setIsModalOpen(false);
+  const handleCloseModal = () => setIsModalOpen(false);
 
   const openEditForm = (video) => {
-    console.log(video);
-    
+
     setModalContent(
       <Form
         titleForm="Editar Video"
@@ -28,10 +29,20 @@ export default function Home() {
   };
 
   const openVideoPlayer = (video) => {
+    changeLoading(true);
     setModalContent(
       <div>
         <h2>{video.title}</h2>
-        <iframe width="560" height="315" src={video.link} allowfullscreen></iframe>
+        <YouTubePlayer
+          style={{ margin: "auto", height: "auto" }}
+          url={video.link}
+          playing={false}
+          volume={0.5}
+          onReady={()=>{
+            changeLoading(false);
+          }}
+        />
+        <p>{video.description}</p>
       </div>
     );
     setIsModalOpen(true);
@@ -46,8 +57,10 @@ export default function Home() {
     return acc;
   }, {});
 
+
   return (
     <div className={styles.home}>
+      <Loading />
       <Banner />
       {Object.keys(groupedVideos).map((category) => (
         <div
@@ -57,15 +70,18 @@ export default function Home() {
           <Title title={category} />
           <div className={styles.cards}>
             {groupedVideos[category].map((video) => (
-              <Card {...video} key={video.id} onEdit={openEditForm}
-              onPlay={openVideoPlayer}/>
+              <Card
+                {...video}
+                key={video.id}
+                onEdit={openEditForm}
+                onPlay={openVideoPlayer}
+              />
             ))}
           </div>
           <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        {modalContent}
-      </Modal>
+            {modalContent}
+          </Modal>
         </div>
-        
       ))}
     </div>
   );

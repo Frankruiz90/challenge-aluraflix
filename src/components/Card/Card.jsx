@@ -39,6 +39,7 @@ export default function Card({ title, id, img, category,link,description,onEdit,
           Editar
         </button>
       </div>
+      <h2>{video.title}</h2>
     </div>
   );
 }

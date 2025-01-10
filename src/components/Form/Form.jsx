@@ -135,7 +135,6 @@ export default function Form({
       description: "",
       category: "",
     });
-    console.log(formData);
   };
 
   return (

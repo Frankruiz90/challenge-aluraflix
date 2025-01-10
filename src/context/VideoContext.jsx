@@ -5,7 +5,7 @@ export const VideoContext = createContext();
 
 // Hook personalizado para realizar peticiones
 const useApi = () => {
-  const baseUrl = "http://localhost:3000";
+  const baseUrl = "https://6740ce51d0b59228b7f16a98.mockapi.io/api/v1/";
 
   const makeRequest = useCallback(
     async (endpoint, method = "GET", body = null) => {
@@ -32,7 +32,7 @@ const useApi = () => {
 // Proveedor del contexto
 export function VideoProvider({ children }) {
   const [videos, setVideos] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const makeRequest = useApi();
@@ -40,14 +40,14 @@ export function VideoProvider({ children }) {
   // Fetch inicial de videos con manejo de errores y estado de carga
   useEffect(() => {
     const fetchVideos = async () => {
-      setLoading(true);
+      changeLoading(true);
       try {
         const data = await makeRequest("/videos");
         setVideos(data);
       } catch (error) {
         setError("No se pudo cargar los videos");
       } finally {
-        setLoading(false);
+        changeLoading(false);
       }
     };
     fetchVideos();
@@ -56,11 +56,14 @@ export function VideoProvider({ children }) {
   // Función para agregar un video
   const addVideo = useCallback(
     async (newVideo) => {
+      changeLoading(true);
       try {
         await makeRequest("/videos", "POST", newVideo);
         setVideos((prev) => [...prev, newVideo]);
       } catch (error) {
         setError("No se pudo agregar el video");
+      } finally {
+        changeLoading(false);
       }
     },
     [makeRequest]
@@ -69,6 +72,7 @@ export function VideoProvider({ children }) {
   // Función para editar un video
   const editVideo = useCallback(
     async (id, updatedVideo) => {
+      changeLoading(true);
       try {
         await makeRequest(`/videos/${id}`, "PUT", updatedVideo);
         setVideos((prev) =>
@@ -78,6 +82,8 @@ export function VideoProvider({ children }) {
         );
       } catch (error) {
         setError("No se pudo editar el video");
+      } finally {
+        changeLoading(false);
       }
     },
     [makeRequest]
@@ -86,15 +92,22 @@ export function VideoProvider({ children }) {
   // Función para eliminar un video
   const deleteVideo = useCallback(
     async (id) => {
+      changeLoading(true);
       try {
         await makeRequest(`/videos/${id}`, "DELETE");
         setVideos((prev) => prev.filter((video) => video.id !== id));
       } catch (error) {
         setError("No se pudo eliminar el video");
+      } finally {
+        changeLoading(false);
       }
     },
     [makeRequest]
   );
+
+  const changeLoading = (value) => {
+    setLoading(value);
+  };
 
   return (
     <VideoContext.Provider
@@ -104,6 +117,7 @@ export function VideoProvider({ children }) {
         editVideo,
         deleteVideo,
         loading,
+        changeLoading,
         error,
       }}
     >

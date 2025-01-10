@@ -1,0 +1,48 @@
+/* src/components/Loading/Loading.module.scss */
+.loadingOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); // Fondo semitransparente
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  z-index: 9999; // Asegura que cubra todo el contenido
+  img {
+
+    animation: beat 6s ease-in infinite;
+    margin-bottom: 50px;
+  }
+  
+  // Definición de la animación "beat"
+  @keyframes beat {
+    0%,
+    50%,
+    100% {
+      transform: scale(2.5, 2.5);
+    }
+    30%,
+    80% {
+      transform: scale(0.7, 0.7);
+    }
+  }
+}
+
+
+.spinner {
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-top: 5px solid #ffffff;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

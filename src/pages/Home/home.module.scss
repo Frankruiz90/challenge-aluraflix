@@ -18,6 +18,7 @@
     padding: 10px;
     padding-bottom: 30px;
     margin-bottom: 40px;
+    min-height: 400px;
     @include mixins.scroll;
   }
   @media (min-width: 768px) {

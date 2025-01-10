@@ -6,9 +6,16 @@ import { BiEditAlt } from "react-icons/bi";
 import { VideoContext } from "../../context/VideoContext"; // Importamos el contexto
 
 
-export default function Card({ title, id, img, category }) {
+export default function Card({ title, id, img, category,link,description,onEdit, onPlay }) {
     const { deleteVideo } = useContext(VideoContext); // Usamos el contexto
-  
+  const video = {
+    title,
+    id,
+    img,
+    link,
+    description,
+    category
+  }
   const dynamicClassName = category 
     ? styles[category.toLowerCase().replace(/\s+/g, '-')] 
     : '';
@@ -18,7 +25,7 @@ export default function Card({ title, id, img, category }) {
   return (
     <div className={`${styles.card} ${dynamicClassName}`}>
       <div className={`${styles.cardImage} ${dynamicClassName}`}>
-        <Link className={styles.link} to={`/${id}`}>
+        <Link className={styles.link} onClick={() => onPlay(video)}>
           <img src={img} alt={title} />
         </Link>
       </div>
@@ -27,11 +34,12 @@ export default function Card({ title, id, img, category }) {
           <MdOutlineDeleteForever />
           Eliminar
         </button>
-        <button>
+        <button onClick={() => onEdit(video)}>
           <BiEditAlt />
           Editar
         </button>
       </div>
+      <h2>{video.title}</h2>
     </div>
   );
 }
